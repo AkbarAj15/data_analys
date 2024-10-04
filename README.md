@@ -6,7 +6,10 @@ conda create --name main-ds python=3.9
 conda activate main-ds
 pip install -r requirements.txt
 ```
-
+## Downdload Dataset
+```
+https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce
+```
 ## Setup Environment - Shell/Terminal
 ```
 mkdir proyek_analisis_data
