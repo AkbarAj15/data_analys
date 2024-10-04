@@ -4,19 +4,19 @@ import matplotlib.image as mpimg
 import seaborn as sns
 import streamlit as st
 import urllib
+import os
 from func import DataAnalyzer, BrazilMapPlotter
 
 sns.set(style='dark')
-st.set_option('deprecation.showPyplotGlobalUse', False)
 
 # Dataset
 datetime_cols = ["order_approved_at", "order_delivered_carrier_date", "order_delivered_customer_date", "order_estimated_delivery_date", "order_purchase_timestamp", "shipping_limit_date"]
-all_df = pd.read_csv("https://raw.githubusercontent.com/mhdhfzz/data-analyst-dicoding/main/dashboard/df.csv")
+all_df = pd.read_csv("all_data.csv")
 all_df.sort_values(by="order_approved_at", inplace=True)
 all_df.reset_index(inplace=True)
 
 # Geolocation Dataset
-geolocation = pd.read_csv('https://raw.githubusercontent.com/mhdhfzz/data-analyst-dicoding/main/dashboard/geolocation.csv')
+geolocation = pd.read_csv('geolocation.csv')
 data = geolocation.drop_duplicates(subset='customer_unique_id')
 
 for col in datetime_cols:
@@ -27,14 +27,15 @@ max_date = all_df["order_approved_at"].max()
 
 # Sidebar
 with st.sidebar:
-    col1, col2, col3 = st.columns(3)
-    with col1:
-        st.write(' ')
-    with col2:
-        st.image("https://raw.githubusercontent.com/mhdhfzz/data-analyst-dicoding/main/dashboard/logo.png"
-                 , width=100)
-    with col3:
-        st.write(' ')
+    # Title
+    st.title("Fadiyah Nur Aulia Sari")
+
+    # Logo Image
+    image_path = "foto_saya.jpg"
+    if os.path.exists(image_path):
+        st.image(image_path)
+    else:
+        st.warning(f"Image file '{image_path}' not found.")
 
     # Date Range
     start_date, end_date = st.date_input(
@@ -43,7 +44,8 @@ with st.sidebar:
         min_value=min_date,
         max_value=max_date
     )
-
+    
+    
 # Main
 main_df = all_df[(all_df["order_approved_at"] >= str(start_date)) & 
                  (all_df["order_approved_at"] <= str(end_date))]
@@ -203,7 +205,8 @@ with tab1:
 with tab2:
     map_plot.plot()
 
-    with st.expander("See Explanation"):
-        st.write('According to the graph that has been created, there are more customers in the southeast and south. Other information, there are more customers in cities that are capitals (São Paulo, Rio de Janeiro, Porto Alegre, and others).')
+    with st.expander("Lihat Penjelasan"):
+        st.write('Sesuai dengan grafik yang sudah dibuat, ada lebih banyak pelanggan di bagian tenggara dan selatan. Informasi lainnya, ada lebih banyak pelanggan di kota-kota yang merupakan ibu kota (São Paulo, Rio de Janeiro, Porto Alegre, dan lainnya).')
 
-st.caption('Copyright (C) Muhammad Hafiz 2023')
+
+st.caption('Copyright (C) FadiyahSari 2024')
