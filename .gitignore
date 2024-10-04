@@ -1,5 +1,3 @@
-# Ignore DataAnalysis.rar
-DataAnalysis.rar
 
 # Ignore the entire data folder
-/data
+./data
