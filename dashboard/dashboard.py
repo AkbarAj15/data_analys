@@ -10,12 +10,12 @@ import os
 from func import BrazilMapPlotter
 
 # Load datasets
-items = pd.read_csv('../data/order_items_dataset.csv')
-products = pd.read_csv('../data/products_dataset.csv')
-orders = pd.read_csv('../data/orders_dataset.csv')
-payments = pd.read_csv('../data/order_payments_dataset.csv')
-customers = pd.read_csv('../data/customers_dataset.csv')
-geolocation = pd.read_csv('../data/geolocation_dataset.csv')  # Dataset untuk pertanyaan 3
+items = pd.read_csv('data/order_items_dataset.csv')
+products = pd.read_csv('data/products_dataset.csv')
+orders = pd.read_csv('data/orders_dataset.csv')
+payments = pd.read_csv('data/order_payments_dataset.csv')
+customers = pd.read_csv('data/customers_dataset.csv')
+geolocation = pd.read_csv('data/geolocation_dataset.csv')  # Dataset untuk pertanyaan 3
 
 # Konversi kolom tanggal menjadi format datetime
 datetime_cols = ["order_approved_at", "order_delivered_carrier_date", "order_delivered_customer_date", "order_estimated_delivery_date", "order_purchase_timestamp"]
@@ -28,7 +28,7 @@ max_date = orders["order_approved_at"].max()
 # Sidebar
 with st.sidebar:
     st.title("Fadiyah Nur Aulia Sari")
-    image_path = "foto_saya.jpg"
+    image_path = "dashboard/foto_saya.jpg"
     if os.path.exists(image_path):
         st.image(image_path)
     else:
